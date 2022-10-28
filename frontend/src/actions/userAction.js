@@ -18,19 +18,18 @@ import {
         config
       );
       dispatch({ type: LOGIN_SUCCESS, payload: data.user });
-      
     } catch (error) {
       dispatch({ type: LOGIN_FAIL, payload: error });
     }
   };
   
   // Register
-  export const register = (userData) => async (dispatch) => {
+  export const register = (name,email,password) => async (dispatch) => {
     try {
-      const config = { headers: { "Content-Type": "multipart/form-data" } };
+      const config = { headers: { "Content-Type": "application/json" } };
       const { data } = await axios.post(
         'http://localhost:4000/api/v1/register',
-        userData,
+        {name,email,password},
         config
         );
       dispatch({ type: REGISTER_USER_SUCCESS, payload: data.user });

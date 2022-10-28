@@ -1,16 +1,14 @@
 import React, {useState } from 'react';
-import Axios from 'axios';
-
+import { useDispatch } from "react-redux";
+import { login } from "../actions/userAction";
 const Login = () => {
 
-    
+    const dispatch = useDispatch();
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     const submit = () => {
-        Axios.post('http://localhost:4000/api/v1/login', { email: email, password: password })
-        setEmail("")
-        setPassword("")
+        dispatch(login(email, password));
     };
     return (
         <div>
