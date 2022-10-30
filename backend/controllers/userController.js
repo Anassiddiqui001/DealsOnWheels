@@ -1,4 +1,4 @@
-
+import sendToken from "../utils/jwtToken";
 import User from "../models/userModel.js";
 
 // Register a User
@@ -10,6 +10,7 @@ export const registerUser = async (req, res) => {
     email,
     password,
   });
+  sendToken(user, 201, res);
 };
 
 export const loginUser = async (req, res) => {
@@ -33,6 +34,27 @@ export const loginUser = async (req, res) => {
     console.log("Invalid email or password");
   }
   else{
+    sendToken(user, 200, res);
     console.log("loggedIn")
   }
+};
+
+// Get User Detail
+export const profile = async (req, res, next) => {
+  const user = await User.findById(req.user.id);
+
+  res.status(200).json({
+    success: true,
+    user,
+  });
+};
+
+// Get all users(admin)
+exports.getAllUser = async (req, res, next) => {
+  const users = await User.find();
+
+  res.status(200).json({
+    success: true,
+    users,
+  });
 };
