@@ -9,4 +9,5 @@ router.route("/login").post(loginUser);
 
 router.route("/me").put(isAuthenticatedUser, profile);
 router.route("/allUsers").get(isAuthenticatedUser, authorizeRoles("admin"), getAllUser)
+
 export default router;
