@@ -1,9 +1,9 @@
 
 
-const jwt = require("jsonwebtoken");
-const User = require("../models/userModel");
+import jwt from "jsonwebtoken";
+import User from "../models/userModel.js";
 
-exports.isAuthenticatedUser = async (req, res, next) => {
+export const isAuthenticatedUser = async (req, res, next) => {
   const { token } = req.cookies;
 
   if (!token) {
@@ -17,7 +17,7 @@ exports.isAuthenticatedUser = async (req, res, next) => {
   next();
 };
 
-exports.authorizeRoles = (...roles) => {
+export const authorizeRoles = (...roles) => {
   return (req, res, next) => {
     if (!roles.includes(req.user.role)) {
       return next(

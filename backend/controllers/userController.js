@@ -1,4 +1,4 @@
-import sendToken from "../utils/jwtToken";
+import sendToken from "../utils/jwtToken.js";
 import User from "../models/userModel.js";
 
 // Register a User
@@ -50,7 +50,7 @@ export const profile = async (req, res, next) => {
 };
 
 // Get all users(admin)
-exports.getAllUser = async (req, res, next) => {
+export const getAllUser = async (req, res, next) => {
   const users = await User.find();
 
   res.status(200).json({
