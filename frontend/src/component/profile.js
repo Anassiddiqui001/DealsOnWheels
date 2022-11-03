@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { loadUser } from "../actions/userAction";
 import store from "../store";
+
 const Profile = ({ history }) => {
   const { user, isAuthenticated } = useSelector((state) => state.user);
 
